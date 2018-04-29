@@ -1,1 +1,1 @@
-# spellcrrector
+# spellcorrector
