@@ -1,0 +1,87 @@
+#include "EchoServer.h"
+#include "TcpServer.h"
+#include "Threadpool.h"
+//#include "class_WordStatistic.h"
+//#include "editDistance.h"
+#include <string>
+#include <iostream>
+
+using std::cout;
+using std::endl;
+WordStatistic* g_WordStatistic = NULL;
+
+
+
+/*
+std::string Task::fromquery()	{
+		std::string fromquery;
+		return fromquery;
+}
+*/
+/*
+void Task::process()
+{
+	cout << "> task is processing" << endl;
+	
+	std::vector<Node>& vecNode = g_WordStatistic->getVecNode();
+	for(auto ch : _query) {
+		std::unordered_set<int>& setInt = g_WordStatistic->getIndex()[ch];
+		
+		for(auto intN : setInt) {
+			MyResult myResult(_query, vecNode[intN]);
+			_priorityQue.push(myResult);
+		}
+	}
+
+
+
+	for (int i = 0; i != 10; ++i) {
+
+		//_conn->send(_queury);//如果直接去使用send，在计算线程里面完成了数据发送,不可取
+		_conn->sendInLoop(_priorityQue.top().print());
+		_priorityQue.pop();
+		_conn->sendInLoop("\n");
+		
+	}
+}
+*/
+void Task::process()
+{
+	cout << "> task is processing" << endl;
+	
+	std::vector<Node>& vecNode = g_WordStatistic->getVecNode();
+	for(auto ch : _query) {
+		std::unordered_set<int>& setInt = g_WordStatistic->getIndex()[ch];
+		
+		for(auto intN : setInt) {
+	//		MyResult myResult(_query, vecNode[intN]);
+	//		_priorityQue.push(myResult);
+			_conn->sendInLoop(vecNode[intN].word);
+		}
+	}
+
+
+/*
+	for (int i = 0; i != 10; ++i) {
+
+		//_conn->send(_queury);//如果直接去使用send，在计算线程里面完成了数据发送,不可取
+		_conn->sendInLoop(_priorityQue.top().print());
+		_priorityQue.pop();
+		_conn->sendInLoop("\n");
+		
+	}
+*/
+
+
+}
+int main(int argc, char const *argv[])
+{
+	WordStatistic theHolyBible("The_Holy_Bible.txt");
+
+	g_WordStatistic = &theHolyBible;
+
+
+
+	EchoServer echoserver("192.168.245.128", 9999);
+    return 0;
+}

@@ -1,0 +1,10 @@
+               hello:1
+               world:1
+                 the:3
+                 day:1
+                  is:3
+               sunny:1
+              flower:1
+           beautifle:1
+              people:1
+                nice:1

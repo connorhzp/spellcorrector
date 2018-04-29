@@ -1,0 +1,4 @@
+2018-02-27 00:09:30,149 [ERROR]  : [Main.cc:11:test]msg ERROR msg
+2018-02-27 00:09:30,149 [WARN]  : [Main.cc:12:test]msg WARN msg
+2018-02-27 00:09:30,150 [INFO]  : [Main.cc:13:test]msg INFO msg
+2018-02-27 00:09:30,150 [DEBUG]  : [Main.cc:14:test]msg DEBUG msg
